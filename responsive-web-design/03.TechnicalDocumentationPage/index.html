@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="styles.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <nav id="navbar">
+      <header class="nav-header">TableTopicker API</header>
+      <ul>
+        <li class="nav-list-item">
+          <a class="nav-link" href="#checklogin">checkLogin </a>
+        </li>
+        <li class="nav-list-item">
+          <a class="nav-link" href="#logout">logout </a>
+        </li>
+        <li class="nav-list-item">
+          <a class="nav-link" href="#sendMagicLink">sendMagicLink </a>
+        </li>
+        <li class="nav-list-item">
+          <a class="nav-link" href="#[magic-link-uuid]">
+            [magic-link-uuid]
+          </a>
+        </li>
+        <li class="nav-list-item">
+          <a class="nav-link" href="#getHistory">getHistory </a>
+        </li>
+      </ul>
+    </nav>
+    <main id="main-doc">
+      <header class="page-header">
+        <h1 style="margin-bottom: 10px">Documentation</h1>
+        <p
+          style="margin: 0px; padding: 0px; max-width: 1000px; font-weight: 200"
+        >
+          This is an example documentation project containing some of the
+          end-points from my TableTopicker web app. This documentation is not
+          for production use and should not be referenced. It's simple content I
+          chose to use for my freeCodeCamp project.
+        </p>
+      </header>
+      <!-- CHECK LOGIN -->
+      <div class="section-container">
+        <section class="main-section" id="checklogin">
+          <header><h1>checkLogin</h1></header>
+          <p class="endpoint">
+            <i>api/auth/checkLogin</i>
+          </p>
+          <p class="description">This endpoint is a validator to</p>
+          <div class="code">
+            <code>
+              <pre>
+export default async function handler(req, res) {
+    try {
+        //await limiter(req);
+    await reqType(req, "GET");
+    await auth(req, res);
+        res.status(200).send(true);
+    } catch (err) {
+        console.log(err)
+        res.status(err.code).send(err.message);
+        return;
+    }
+}</pre
+              >
+            </code>
+          </div>
+          <b>Responses</b>
+          <ul>
+            <li><b>200</b> - returns true, includes user JWT cookie.</li>
+            <li><b>403</b> - User not authenticated</li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- LOGOUT -->
+      <div class="section-container">
+        <section class="main-section" id="logout">
+          <header><h1>logout</h1></header>
+          <p class="endpoint">
+            <i>api/auth/logout</i>
+          </p>
+          <p class="description">This endpoint is a validator to</p>
+          <div class="code">
+            <code>
+              <pre>
+export default async function handler(req, res) {
+  if (req.method !== "GET") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
+
+  const { jwt } = req.cookies;
+  if (!jwt) {
+    return res.status(400).json({ error: "Missing magic link UUID" });
+  }
+
+  try {
+    invalidateJWT(jwt);
+
+    res.setHeader(
+      "Set-Cookie",
+      `jwt=; HttpOnly; Secure; SameSite=Strict; Path=/`
+    );
+    // Redirect the user to the home page
+    res.redirect(302, "/").end();
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}</pre
+              >
+            </code>
+          </div>
+          <b>Responses</b>
+          <ul>
+            <li><b>302</b> - Redirects to home (/)</li>
+            <li><b>500</b> - Error logging out</li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- SEND MAGIC LINK -->
+      <div class="section-container">
+        <section class="main-section" id="sendMagicLink">
+          <header><h1>sendMagicLink</h1></header>
+          <p class="endpoint">
+            <i>api/auth/sendMagicLink</i>
+          </p>
+          <p class="description">This endpoint is a validator to</p>
+          <div class="code">
+            <code>
+              <pre>
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ message: "Method not allowed" });
+  }
+  try {
+    const { conn, db } = await connectToDatabase("users");
+    const magicLinkCol = db.collection("magic-links");
+    const userCol = db.collection("users");
+
+    // Validate the input data
+    const { email } = req.body;
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (typeof email !== "string" || !emailRegex.test(email)) {
+      return res.status(400).json({ message: "Valid Email Required" });
+    }
+
+    // Create a user if one doesn't exist for this email
+    const existingUser = await userCol.findOne({ email });
+    let userId = existingUser?._id;
+
+    // If email is not in use, create a new user
+    if (!existingUser) {
+      const newUserInsert = {
+        email,
+        accountCreationDate: new Date(),
+        firstLogin: true,
+      };
+      const newUser = await userCol.insertOne(newUserInsert);
+      userId = newUser.insertedId;
+    }
+
+    // Generate random hex string for the magic link url
+    const magicLinkUuid = uuid();
+    const magicUrl = `${DOMAIN}/api/auth/magic/${magicLinkUuid}`;
+
+    // Insert magic link and user info into the collection
+    const insertData = {
+      userId,
+      magicLink: magicLinkUuid,
+      valid: true,
+      expireAt: new Date(Date.now() + 1000 * 60 * 60),
+    };
+    await magicLinkCol.insertOne(insertData);
+
+    // Create email paramters for MailGun
+    const credentials = btoa(`api:${MG_API_KEY}`);
+    const mg_config = {
+      headers: {
+        Authorization: `Basic ${credentials}`,
+        "Content-Type": "multipart/form-data",
+      },
+    };
+    const content = {
+      from: `Table Topicker`,
+      to: email,
+      subject: "Table Topicker Magic Link",
+      text: `Welcome to Table Topicker! \nPlease click this link to log in: \n\n${magicUrl}`,
+      html: createMagicLinkEmail(magicUrl),
+    };
+
+    try {
+      // Email the user the new code
+      await axios.post(`${MG_URL}/messages`, content, mg_config);
+    } catch (err) {
+      console.log(err);
+      return res
+        .status(500)
+        .json({ success: false, message: "Error sending email" });
+    }
+
+    // Disconnect from DB and send final response
+    await disconnectFromDatabase(conn);
+    return res.status(200).json({ success: true, message: "Email Sent" });
+  } catch (err) {
+    res.status(500).json({ message: `Server Error: ${err.message}` });
+  }
+}</pre
+              >
+            </code>
+          </div>
+          <b>Responses</b>
+          <ul>
+            <li>
+              <b>200</b> - returns { success: true, message: "Email Sent" }
+            </li>
+            <li><b>500</b> - Server Error: ${err.message}</li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- MAGIC LINK -->
+      <div class="section-container">
+        <section class="main-section" id="[magic-link-uuid]">
+          <header><h1>[magic-link-uuid]</h1></header>
+          <p class="endpoint">
+            <i>api/auth/magic/[magic-link-uuid]</i>
+          </p>
+          <p class="description">This endpoint is a validator to</p>
+          <div class="code">
+            <code>
+              <pre>
+export default async function handler(req, res) {
+  if (req.method !== "GET") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
+
+  const magicLinkUuid = req.query["magic-link-uuid"];
+
+  if (!magicLinkUuid) {
+    return res.status(400).json({ error: "Missing magic link UUID" });
+  }
+
+  try {
+    const { conn, db } = await connectToDatabase("users");
+    const magicLinksCol = db.collection("magic-links");
+    const userCol = db.collection("users");
+
+    // Find magic link document
+    const magicLinkDoc = await magicLinksCol.findOne({
+      magicLink: magicLinkUuid,
+    });
+
+    if (!magicLinkDoc) {
+      return res.status(404).json({ error: "Magic link not found" });
+    }
+
+    // Check if the link has expired
+    const currentTime = new Date().getTime() / 1000;
+    if (magicLinkDoc.expireAt < currentTime || !magicLinkDoc.valid) {
+      return res.status(401).json({ error: "Link has expired" });
+    }
+  
+    // Update document to set valid to false
+    await magicLinksCol.updateOne(
+      { _id: magicLinkDoc._id },
+      { $set: { valid: true } }
+    );
+
+    const user = await userCol.findOne({ _id: magicLinkDoc.userId });
+    const jwt = generateJWT(user);
+    res.setHeader(
+      "Set-Cookie",
+      `jwt=${jwt}; HttpOnly; Secure; SameSite=Strict; Path=/`
+    );
+
+    await disconnectFromDatabase(conn);
+    // Redirect the user to the home page
+    // The first load after this redirect will not see the cookie,
+    // but all subsequent loads will. To mitigate this, the jwt is in the url as well
+    // js in the frontend will remove the jwt from the url after first page load
+    res.redirect(302, `/login-success?t=${jwt}`).end();
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}</pre
+              >
+            </code>
+          </div>
+          <b>Responses</b>
+          <ul>
+            <li><b>400</b> - Missing magic link UUID</li>
+            <li><b>404</b> - Magic link not found</li>
+            <li><b>401</b> - Link has expired</li>
+            <li><b>500</b> - Server error</li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- MAGIC LINK -->
+      <div class="section-container">
+        <section class="main-section" id="getHistory">
+          <header><h1>getHistory</h1></header>
+          <p class="endpoint">
+            <i>api/user/getHistory</i>
+          </p>
+          <p class="description">This endpoint is a validator to</p>
+          <div class="code">
+            <code>
+              <pre>
+export default async function handler(req, res) {
+  try {
+    //await limiter(req);
+    await reqType(req, "POST");
+    await auth(req, res);
+    const { page, topicsPerPage } = req.body;
+    await validateInput([
+      { name: "page", value: page, type: "number" },
+      { name: "topicsPerPage", value: topicsPerPage, type: "number" },
+    ]);
+    try {
+      const { conn, db } = await connectToDatabase("users");
+      const questionHistoryCol = db.collection("question-history");
+      
+      const userQuestionHistory = await questionHistoryCol
+        .find({ userId: req.user._id })
+        .sort({ date: -1 })
+        .skip((page - 1) * topicsPerPage)
+        .limit(topicsPerPage)
+        .toArray();
+        
+      await disconnectFromDatabase(conn);
+      res.status(200).json(userQuestionHistory);
+    } catch (err) {
+      console.error(err);
+      throw { message: "Error getting data", code: 500 };
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(err.code).send(err.message);
+    return;
+  }
+}</pre
+              >
+            </code>
+          </div>
+          <b>Responses</b>
+          <ul>
+            <li><b>200</b> - returns true, includes user JWT cookie.</li>
+            <li><b>403</b> - User not authenticated</li>
+          </ul>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

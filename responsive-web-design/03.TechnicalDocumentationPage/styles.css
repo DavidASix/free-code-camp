@@ -1,0 +1,154 @@
+:root {
+    --primary:  #e3e184;
+    --dark-1:  #141414;
+    --dark-2:  #292929;
+    --dark-3:  #404040;
+    --dark-4:  #585858;
+    --text: white;
+    --text-muted: #DDD;
+    --radius: 20px;
+}
+
+* {
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--text)
+}
+
+body {
+  display: flex;
+  overflow: hidden;
+  margin: 0px;
+  height: 100vh;
+  background-color: var(--dark-1);
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+  justify-content: start;
+  overflow: hidden;
+  background-color: var(--dark-4);
+  border-radius: var(--radius);
+  margin: 20px 10px;
+}
+
+.nav-header {
+  border-bottom: var(--dark-3) 1px solid;
+  margin: 0px;
+  padding: 15px 10px;
+  margin: 0px 5px;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+ul {
+  padding: 5px 15px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: scroll;
+}
+
+.nav-list-item {
+  list-style: none;
+  padding: 8px 0px;
+  width: 100%;
+  margin: 0px auto;
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: 300;
+  border-bottom: 1px var(--dark-3) solid;
+}
+
+.nav-link {
+    text-decoration: none;
+}
+
+.nav-link:visited {
+    color: var(--text-muted)
+}
+
+.nav-link:hover {
+    color: var(--primary)
+}
+
+
+main {
+  scroll-behavior: smooth;
+  flex: 1;
+  overflow: scroll;
+  height: 100vh;
+  padding: 0px 20px 0px 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header {
+    padding-top: 20px;
+}
+
+h1 {
+    margin: 0px;
+    padding: 0px;
+}
+
+.main-section {
+    background-color: var(--dark-2);
+    border-radius: var(--radius);
+    padding: 20px;
+}
+
+.section-container {
+    padding-top: 20px;
+}
+
+.endpoint {
+    font-size: 0.75rem;
+    margin: 5px 0px;
+    padding: 0px 5px;
+}
+
+.description {
+    margin: 0px;
+    padding: 0px 5px
+}
+
+.code {
+  background-color: var(--dark-3);
+  border-radius: var(--radius);
+  padding: 10px 10px;
+  margin: 10px 0px;
+}
+
+code > * {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem;
+}
+
+pre {
+    white-space: pre-wrap;
+}
+
+@media only screen and (max-width: 700px) {
+  body {
+    flex-direction: column;
+  }
+  nav {
+    height: 150px;
+    margin-bottom: 0px;
+    z-index: 20;
+  }
+  .nav-header {
+    text-align: center;
+  }
+  .nav-list-item {
+    text-align: center;
+  }
+  main {
+    margin-top: -20px;
+    padding: 30px 10px;
+    z-index: 10;
+  }
+}
