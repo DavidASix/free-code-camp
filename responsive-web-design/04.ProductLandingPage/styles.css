@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  padding: 0px;
+  margin: 0px;
+  background-color: azure;
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+}
+
+#header {
+  border: 1px red solid;
+  padding: 4px 10px;
+  margin-bottom: -60px;
+  height: 60px;
+  position: sticky;
+  top: 0px;
+  display: flex;
+}
+
+#header-img {
+  height: 100%;
+  width: auto;
+}
+
+#nav-bar {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-link {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#hero {
+  padding-top: 60px;
+  border: 1px green solid;
+  min-height: 100vh;
+  background-color: aquamarine;
+}
+
+#video-demo {
+  border: 1px green solid;
+  min-height: 100vh;
+}
+
+#pricing {
+  border: 1px green solid;
+  min-height: 100vh;
+}
+
+#contact-cta {
+  border: 1px green solid;
+  min-height: 100vh;
+}
+
+footer {
+    height: 120px;
+}
