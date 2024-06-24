@@ -18,6 +18,7 @@ html {
   padding: 0px;
   margin: 0px;
   background-color: var(--ra-white);
+  color: var(--ra-black)
 }
 
 body {
@@ -25,7 +26,9 @@ body {
   margin: 0px;
   position: relative;
 }
-
+p, h1, h2, h3 {
+    margin: 0px;
+}
 .title-text {
     font-family: "Righteous", sans-serif;
     font-weight: 400;
@@ -122,6 +125,7 @@ body {
   justify-content: center;
   align-items: start;
   padding: 10px;
+  gap: 20px;
 }
 
 .hero-header-text {
@@ -146,9 +150,52 @@ body {
   object-fit: contain;
 }
 
+/* SOCIAL PROOF */
+.social-proof {
+    min-height: 40px;
+    min-width: fit-content;
+    display: flex;
+}   
+
+.social-proof-left {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+}
+
+.social-proof-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+.social-proof-user {
+    box-sizing: content-box;
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 3.5rem;
+    border: 5px var(--ra-black) solid;
+    margin-left: -24px;
+}
+
 #video-demo {
-  border: 1px green solid;
   min-height: 100vh;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.video {
+    height: 500px;
+    width: 750px;
+    overflow: hidden;
+    border-radius: 25px;
 }
 
 #pricing {
@@ -158,7 +205,8 @@ body {
 
 #contact-cta {
   border: 1px green solid;
-  min-height: 100vh;
+  min-height: 50vh;
+  background-color: var(--ra-red);
 }
 
 footer {
