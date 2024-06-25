@@ -4,6 +4,7 @@
   --ra-black: #252323ff;
   --ra-gray: #a1b0abff;
   --ra-white: #ededf4ff;
+  --ra-white-muted: hsl(240, 24%, 85%);
 }
 
 * {
@@ -49,6 +50,7 @@ p, h1, h2, h3 {
   align-items: center;
   background-color: var(--ra-black);
   fill-opacity: 50%;
+  z-index: 99;
 }
 
 #header-img {
@@ -198,9 +200,54 @@ p, h1, h2, h3 {
     border-radius: 25px;
 }
 
+/* PRICING */
 #pricing {
-  border: 1px green solid;
-  min-height: 100vh;
+  background-color: var(--ra-white);
+  min-height: 60vh;
+  padding: 50px 0px;
+}
+
+.prices {
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1px;
+    max-width: 1300px;
+    height: 100%;
+    margin: 0px auto;
+}
+
+.price {
+    background-color: var(--ra-black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: 30px;
+    width: 300px;
+    height: 50vh;
+    border-radius: 10px;
+    border: 8px var(--ra-orange) solid;
+    color: var(--ra-white)
+}
+
+.price:not(.price:first-of-type, .price:last-of-type) {
+    height: 60vh !important;
+    margin: 0px -10px;
+    box-sizing: content-box;
+    border: 10px var(--ra-red) solid;
+    z-index: 20;
+    transition: all 300ms;
+}
+.price:not(.price:first-of-type, .price:last-of-type):hover {
+    scale: 1.02;
+}
+
+.price-title {
+    font-size: 1.75rem;
+    white-space: nowrap;
 }
 
 #contact-cta {
