@@ -204,7 +204,7 @@ p, h1, h2, h3 {
 #pricing {
   background-color: var(--ra-white);
   min-height: 60vh;
-  padding: 50px 0px;
+  padding: 0px 0px 50px 0px;
 }
 
 .prices {
@@ -248,14 +248,93 @@ p, h1, h2, h3 {
 .price-title {
     font-size: 1.75rem;
     white-space: nowrap;
+    text-align: center;
 }
 
 #contact-cta {
-  border: 1px green solid;
   min-height: 50vh;
   background-color: var(--ra-red);
 }
 
+form {
+   height: 50vh;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  max-width: 1300px;
+  margin: 0px auto;
+  color: var(--ra-white)
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#email-label {
+  font-size: 0.8rem;
+  margin-left: -10px;
+}
+
+#email {
+  all: unset;
+  background-color: var(--ra-white-muted);
+  color: var(--ra-black);
+  width: 300px;
+  height: 40px;
+  border-radius: 50px;
+  padding: 0px 20px;
+  transition: all 300ms;
+}
+
+#email:focus {
+  background-color: var(--ra-white);
+}
+
+.cta-button {
+  all: unset;
+  height: 40px;
+  min-width: 300px;
+  width: min-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-wrap: nowrap;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 50px;
+  background-color: var(--ra-gray);
+  font-weight: bold;
+  font-family: "Righteous", sans-serif;
+  color: var(--ra-black);
+  font-size: 1.25rem;
+  cursor: default;
+  transition: all 200ms;
+}
+.cta-button:hover {
+    cursor: pointer;
+    scale: 1.01;
+    background-color: var(--ra-orange);
+}
+
 footer {
   height: 120px;
+  background-color: var(--ra-black);
+  display: flex;
+justify-content: space-between;
+}
+
+.footer-textbox {
+  max-width:50%;
+  width: 300px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--ra-white);
+  font-size: 0.8rem;
+  padding: 10px 20px;
 }
