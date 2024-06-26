@@ -29,15 +29,67 @@ body {
 }
 
 p,
+span,
+nav,
+a,
 h1,
 h2,
 h3 {
   margin: 0px;
+  color: inherit;
 }
 
 header {
-  height: 40px;
+  height: 60px;
+  margin-bottom: -60px;
   width: 100%;
+  padding: 4px 25px;
+  position: sticky;
+  top: 0px;
+  display: flex;
+  align-items: center;
+  z-index: 99;
+  color: var(--light)
+}
+
+section {
+    position:relative;
+    min-height: 50vh;
+    display: flex;
+}
+
+section > * {
+    z-index: 10;
+}
+
+.seperator {
+    position: absolute;
+    left: 0;
+    right:0;
+    width: 100vw;
+    height: 200px;
+    z-index: 0;
+}
+
+#welcome {
+    padding-top: 40px;
+    height: 100vh;
+    background: linear-gradient(45deg, var(--dark) 0%, var(--dark-muted) 100%);
+    color: var(--light)
+}
+
+.headshot {
+    max-height: 50vh;
+    width: auto;
+    object-fit: contain;
+}
+
+#about {
+    background-color: var(--light);
+}
+
+#projects {
+    background-color: var(--secondary);
 }
 
 footer {
