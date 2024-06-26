@@ -1,0 +1,61 @@
+:root {
+    --dark: hsla(285, 18%, 4%, 1);
+    --dark-muted: hsla(285, 18%, 10%, 1);
+    --light: hsla(338, 29%, 95%, 1);
+    --light-muted: hsla(338, 29%, 86%, 1);
+    --primary: hsla(344, 79%, 49%, 1);
+    --secondary: hsla(184, 36%, 60%, 1);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--dark);
+}
+
+html {
+  scroll-behavior: smooth;
+  padding: 0px;
+  margin: 0px;
+  background-color: var(--light);
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+}
+
+p,
+h1,
+h2,
+h3 {
+  margin: 0px;
+}
+
+header {
+  height: 40px;
+  width: 100%;
+}
+
+footer {
+  height: 200px;
+  background-color: var(--primary);
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-textbox {
+  max-width: 50%;
+  width: 300px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: black;
+  font-size: 1rem;
+  padding: 10px 20px;
+}
