@@ -1,10 +1,10 @@
 :root {
-    --dark: hsla(285, 18%, 4%, 1);
-    --dark-muted: hsla(285, 18%, 10%, 1);
-    --light: hsla(338, 29%, 95%, 1);
-    --light-muted: hsla(338, 29%, 86%, 1);
-    --primary: hsla(344, 79%, 49%, 1);
-    --secondary: hsla(184, 36%, 60%, 1);
+  --dark: hsla(285, 18%, 4%, 1);
+  --dark-muted: hsla(285, 18%, 10%, 1);
+  --light: hsla(338, 29%, 95%, 1);
+  --light-muted: hsla(338, 29%, 86%, 1);
+  --primary: hsla(344, 79%, 49%, 1);
+  --secondary: hsla(184, 36%, 60%, 1);
 }
 
 * {
@@ -39,57 +39,114 @@ h3 {
   color: inherit;
 }
 
+.text-light {
+  color: var(--light);
+}
+
 header {
   height: 60px;
   margin-bottom: -60px;
   width: 100%;
-  padding: 4px 25px;
+  padding: 4px 40px;
   position: sticky;
   top: 0px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   z-index: 99;
-  color: var(--light)
+  background: linear-gradient(90deg, var(--dark) 0%, var(--dark-muted) 100%);
+}
+
+nav {
+  display: flex;
+  gap: 30px;
+}
+
+nav > * {
+  text-decoration: none;
+  color: var(--light-muted);
+  font-size: 1.25rem;
+  transition: all 250ms;
+}
+
+nav > *:hover {
+  color: var(--primary);
 }
 
 section {
-    position:relative;
-    min-height: 50vh;
-    display: flex;
+  position: relative;
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section-content {
+  max-width: 1400px;
+  width: 100%;
+  height: 100%;
+  padding: 5px 10px;
+  display: flex;
+}
+
+.content-text-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 20px;
+  padding: 10px 20px;
+}
+
+.content-image-container {
+  flex: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 section > * {
-    z-index: 10;
+  z-index: 10;
 }
 
 .seperator {
-    position: absolute;
-    left: 0;
-    right:0;
-    width: 100vw;
-    height: 200px;
-    z-index: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 200px;
+  z-index: 0;
 }
 
 #welcome {
-    padding-top: 40px;
-    height: 100vh;
-    background: linear-gradient(45deg, var(--dark) 0%, var(--dark-muted) 100%);
-    color: var(--light)
+  padding-top: 60px;
+  height: 100vh;
+  background: linear-gradient(90deg, var(--dark) 0%, var(--dark-muted) 100%);
+  color: var(--light);
 }
 
 .headshot {
-    max-height: 50vh;
-    width: auto;
-    object-fit: contain;
+  z-index: 10;
+  max-height: 60vh;
+  width: auto;
+  object-fit: contain;
+}
+
+.headshot-bg {
+  z-index: 0;
+  position: absolute;
+  max-height: 60vh;
+  width: auto;
+  object-fit: contain;
 }
 
 #about {
-    background-color: var(--light);
+  background-color: var(--light);
 }
 
 #projects {
-    background-color: var(--secondary);
+  background-color: var(--secondary);
 }
 
 footer {
@@ -110,4 +167,16 @@ footer {
   color: black;
   font-size: 1rem;
   padding: 10px 20px;
+}
+
+.footer-image {
+  height: 75px;
+  width: 75px;
+  object-fit: contain;
+  transition: all 200ms;
+}
+
+.footer-image:hover {
+  transform: translateY(-3px)rotate(-10deg);
+
 }
