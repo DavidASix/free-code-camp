@@ -5,6 +5,34 @@
   --light-muted: hsla(338, 29%, 86%, 1);
   --primary: hsla(344, 79%, 49%, 1);
   --secondary: hsla(184, 36%, 60%, 1);
+  --radius: 20px;
+}
+
+@keyframes wiggle {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  30% {
+    transform: translateY(0) rotate(0deg);
+  }
+  40% {
+    transform: translateY(0) rotate(1deg);
+  }
+  50% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  60% {
+    transform: translateY(0) rotate(1deg);
+  }
+  70% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  80% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
 }
 
 * {
@@ -147,6 +175,69 @@ section > * {
 
 #projects {
   background-color: var(--secondary);
+  padding: 60px 0px;
+}
+
+.project-tile-grid {
+  width: 100%;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.project-tile {
+  flex: 1;
+  min-height: 350px;
+}
+
+.project-container {
+  display: flex;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: var(--light-muted);
+  border-radius: var(--radius);
+  transition: all 200ms;
+  overflow: hidden;
+  color: var(--light);
+  transform: translateY(0px);
+}
+
+.project-container:hover {
+  animation: wiggle 1.2s both calc(1.2s * -0.3);
+  scale: 1.005;
+  translate: 0px -5px;
+  color: var(--light);
+}
+
+.project-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  z-index: 0;
+}
+
+.project-link {
+  background-color: var(--primary);
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  min-height: 60px;
+  z-index: 10;
+  color: inherit;
+}
+
+.project-link-text {
+  font-size: 1.5rem;
+  color: inherit;
+  font-weight: bold;
 }
 
 footer {
@@ -180,6 +271,12 @@ footer {
   transform: translateY(-3px) rotate(-10deg);
 }
 
+@media only screen and (max-width: 1000px) {
+  #about-content {
+    flex-direction: column;
+  }
+}
+
 @media only screen and (max-width: 725px) {
   .section-content {
     flex-direction: column;
@@ -190,10 +287,13 @@ footer {
   #hero-image-container {
     order: 1;
   }
+  .project-tile-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-@media only screen and (max-width: 1000px) {
-  #about-content {
-    flex-direction: column;
+@media only screen and (max-width: 500px) {
+  .project-tile-grid {
+    grid-template-columns: repeat(1, 1fr);
   }
 }

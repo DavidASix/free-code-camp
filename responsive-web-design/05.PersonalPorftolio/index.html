@@ -75,11 +75,15 @@
           <div class="content-image-container">
             <img
               src="https://unsplash.com/photos/ISg37AI2A-s/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Mnx8bWFuJTIwYW5kJTIwZG9nfGVufDB8fHx8MTcxOTU3NDk0MHww&force=true&w=640"
-              style="border-radius: 40px; max-width: 80vw; height: auto"
+              style="
+                border-radius: var(--radius);
+                max-width: 80vw;
+                height: auto;
+              "
             />
           </div>
           <div class="content-text-container">
-            <h2 style="font-size: 2rem">About Me</h2>
+            <h2 style="font-size: 3rem; font-weight: bold">About Me</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
               eget semper urna, sit amet viverra mauris. Vivamus pretium auctor
@@ -108,11 +112,14 @@
         </div>
       </section>
       <section id="projects">
-        <div class="section-content">
+        <div
+          class="section-content"
+          style="flex-direction: column; align-items: center"
+        >
           <svg
             viewBox="0 0 1000 150"
             class="seperator"
-            style="top: 0; rotate: 180deg"
+            style="top: 0; rotate: 180deg; height: 120px"
             preserveAspectRatio="none"
           >
             <path
@@ -123,7 +130,7 @@
           <svg
             viewBox="0 0 1000 150"
             class="seperator"
-            style="bottom: 0"
+            style="bottom: 0; height: 120px"
             preserveAspectRatio="none"
           >
             <path
@@ -131,10 +138,106 @@
               fill="var(--primary)"
             />
           </svg>
-          <h2>Here are some of my projects</h2>
-          <article class="project-tile">
-            <a href=""> Link </a>
-          </article>
+          <h2
+            style="font-size: 3rem; font-weight: bold; align-self: start"
+            class="text-light"
+          >
+            Projects
+          </h2>
+          <p style="margin-bottom: 20px; align-self: start" class="text-light">
+            Here are some examples of my work in Python and React Native. To
+            view more of my work, check out
+            <a href="https://davidasix.com/projects?utm_source=freeCodeCamp"
+              >davidasix.com/projects</a
+            >.
+          </p>
+          <div class="project-tile-grid">
+            <article class="project-tile">
+              <a href="https://davidasix.com/projects/bugs-orisinal-game">
+                <div class="project-container">
+                  <img
+                    src="https://api.davidasix.com/uploads/bugs_218098620_bf4a9c0a1d.jpg"
+                    class="project-img"
+                  />
+                  <div class="project-link">
+                    <h3 class="project-link-text">Bugs - Orisinal Game</h3>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <article class="project-tile">
+              <a href="https://davidasix.com/projects/etsy-messenger">
+                <div class="project-container">
+                  <img
+                    src="https://api.davidasix.com/uploads/etsy_messenger_logo_d8db58d4f4.jpg"
+                    class="project-img"
+                  />
+                  <div class="project-link">
+                    <h3 class="project-link-text">Etsy Messenger</h3>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <article class="project-tile">
+              <a
+                href="https://davidasix.com/projects/vietnamese-language-graph"
+              >
+                <div class="project-container">
+                  <img
+                    src="https://api.davidasix.com/uploads/viet_lang_graph_logo_ce7c5acacb.jpg"
+                    class="project-img"
+                  />
+                  <div class="project-link">
+                    <h3 class="project-link-text">Vietnamese Language Graph</h3>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <article class="project-tile">
+              <a href="https://davidasix.com/projects/just-dogs">
+                <div class="project-container">
+                  <img
+                    src="https://api.davidasix.com/uploads/ic_icon_2c93adcec9.png"
+                    class="project-img"
+                  />
+                  <div class="project-link">
+                    <h3 class="project-link-text">Just Dogs</h3>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <article class="project-tile">
+              <a href="https://davidasix.com/projects/midwife-assist">
+                <div class="project-container">
+                  <img
+                    src="https://api.davidasix.com/uploads/App_Icon_697663ff9c.jpg"
+                    class="project-img"
+                  />
+                  <div class="project-link">
+                    <h3 class="project-link-text">Midwife Assist</h3>
+                  </div>
+                </div>
+              </a>
+            </article>
+
+            <article class="project-tile">
+              <a href="https://davidasix.com/projects/real-stop-light">
+                <div class="project-container">
+                  <img
+                    src="https://api.davidasix.com/uploads/App_Icon_1e5fa4aa53.png"
+                    class="project-img"
+                  />
+                  <div class="project-link">
+                    <h3 class="project-link-text">Real StopLight</h3>
+                  </div>
+                </div>
+              </a>
+            </article>
+          </div>
         </div>
       </section>
     </main>
