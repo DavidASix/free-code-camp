@@ -77,7 +77,7 @@ header {
   width: 100%;
   padding: 4px 40px;
   position: sticky;
-  top: -1px;
+  top: 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -147,7 +147,7 @@ section > * {
   z-index: 0;
 }
 
-#welcome {
+#welcome-section {
   padding-top: 60px;
   min-height: 100vh;
   background: linear-gradient(90deg, var(--dark) 0%, var(--dark-muted) 100%);
@@ -255,7 +255,7 @@ footer {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  color: black;
+  color: var(--light);
   font-size: 1rem;
   padding: 10px 20px;
 }
@@ -265,10 +265,15 @@ footer {
   width: 75px;
   object-fit: contain;
   transition: all 200ms;
+  filter: invert(100%);
 }
 
-.footer-image:hover {
+#github-img:hover {
   transform: translateY(-3px) rotate(-10deg);
+}
+
+#freecodecamp-img:hover {
+  transform: translateY(-3px) rotate(10deg);
 }
 
 @media only screen and (max-width: 1000px) {
