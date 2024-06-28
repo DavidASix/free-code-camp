@@ -49,7 +49,7 @@ header {
   width: 100%;
   padding: 4px 40px;
   position: sticky;
-  top: 0px;
+  top: -1px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -121,7 +121,7 @@ section > * {
 
 #welcome {
   padding-top: 60px;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(90deg, var(--dark) 0%, var(--dark-muted) 100%);
   color: var(--light);
 }
@@ -177,6 +177,23 @@ footer {
 }
 
 .footer-image:hover {
-  transform: translateY(-3px)rotate(-10deg);
+  transform: translateY(-3px) rotate(-10deg);
+}
 
+@media only screen and (max-width: 725px) {
+  .section-content {
+    flex-direction: column;
+  }
+  #hero-text-container {
+    order: 2;
+  }
+  #hero-image-container {
+    order: 1;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #about-content {
+    flex-direction: column;
+  }
 }
