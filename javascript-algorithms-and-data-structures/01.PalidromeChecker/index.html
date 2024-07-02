@@ -6,16 +6,47 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
     <main>
-      <input type="text" id="text-input" />
-      <button id="check-btn">submit</button>
-      <span id="result"></span>
-      
+      <div class="by-line">
+        <img
+          src="https://api.davidasix.com/uploads/icon_750px_e6059c91eb.png"
+          class="header-img"
+        />
+        <h1>by DavidASix</h1>
+      </div>
+      <div id="title">
+        <h1 style="font-size: 3rem; font-weight: 800">Palindrome Check</h1>
+        <span style="font-size: 1.1rem; font-weight: 200">
+          a freeCodeCamp project
+        </span>
+      </div>
+      <div id="help-text">
+        <h2>What is a palindrome?</h2>
+        <p style="margin-top: 10px; font-weight: 300">
+          A word, phrase, verse, or sentence that reads the same backward or
+          forward. For example: A man, a plan, a canal, Panama!
+        </p>
+      </div>
+      <section class="tool-container">
+        <div class="tool">
+          <p id="instructions">Enter some text to check if it's a palindrome</p>
+          <div class="control-container">
+            <span id="result">Waiting for value...</span>
+            <input
+              type="text"
+              id="text-input"
+              placeholder="Enter some text..."
+              maxlength="64"
+            />
+            <button id="check-btn">Submit Palindrome</button>
+          </div>
+        </div>
+      </section>
     </main>
     <script type="text/javascript" src="./script.js"></script>
   </body>
