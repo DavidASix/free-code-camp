@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="styles.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <div class="by-line">
+        <img
+          src="https://api.davidasix.com/uploads/icon_750px_e6059c91eb.png"
+          class="header-img"
+        />
+        <h1>by DavidASix</h1>
+      </div>
+      <div id="title">
+        <h1 style="font-size: 3rem; font-weight: 800">
+          Telephone Number Validator
+        </h1>
+        <span style="font-size: 1.1rem; font-weight: 200">
+          a freeCodeCamp project
+        </span>
+      </div>
+      <div id="help-text">
+        <h2>What is a valid North American number?</h2>
+        <p style="margin-top: 10px; font-weight: 300">
+          A Telephone Number (TFN) must consist of 10 - 11 digits in a pattern
+          of one, three, three, four.<br />
+          Each segment can be together, or seperated by a whitespace or dash.
+          The area code can be surrounded by paranthesis.
+        </p>
+      </div>
+      <section class="tool-container">
+        <div class="tool">
+          <p id="instructions">Enter a number to test</p>
+          <div class="control-container">
+            <span id="results-div"></span>
+            <input type="text" id="user-input" placeholder="123-123-1234" />
+            <button id="check-btn">Check Validity</button>
+            <button id="clear-btn">Clear</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script type="text/javascript" src="./script.js"></script>
+  </body>
+</html>
