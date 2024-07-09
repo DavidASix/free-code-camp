@@ -1,5 +1,5 @@
 // Price of item to purchase
-let price = 1.87;
+let price = 19.5;
 // Cash in drawer
 let cid = [
   ["PENNY", 1.01],
@@ -30,7 +30,7 @@ let cash = 0;
 const cashInput = document.getElementById("cash");
 const changeDueSpan = document.getElementById("change-due");
 const purchaseBtn = document.getElementById("purchase-btn");
-const drawerUl = document.getElementById("drawer");
+const drawerTbody = document.getElementById("drawer");
 const priceSpan = document.getElementById("price");
 
 function renderPrice() {
@@ -38,10 +38,10 @@ function renderPrice() {
 }
 
 function renderDrawer() {
-  drawerUl.innerHTML = "";
+  drawerTbody.innerHTML = "";
   cid.forEach((ct, i) => {
     const denom = denoms.find(d => d.cid_key === ct[0])
-    drawerUl.innerHTML += `
+    drawerTbody.innerHTML += `
     <tr>
       <td>
         ${ct[0].slice(0, 1).toUpperCase() + ct[0].slice(1).toLowerCase()}
@@ -60,8 +60,40 @@ function renderDrawer() {
   });
 }
 
+function calculateChange(changeRequired) {
+  // Returns an object of denominations and values to give change
+  let changeRemaining = changeRequired;
+  let change = {}
+  let denomsUsed = 0;
+  Array.from(denoms)
+  .reverse()
+  .forEach(denom => {
+    // Get the minimum of either the required amount of denoms, or the amount we have
+    let denomsAvailable = Math.round(cid.find(c => c[0] === denom.cid_key)[1] / denom.value);
+    denomsUsed = Math.floor(changeRemaining / denom.value);
+    denomsUsed =  Math.min(denomsUsed, denomsAvailable)
+
+    changeRemaining = Number((changeRemaining - (denomsUsed * denom.value)).toFixed(2));
+    change[denom.cid_key] = {used: denomsUsed, value: denom.value, total: denom.value * denomsUsed};
+  });
+  return {change, changeRemaining};
+}
+
 function onPurchaseBtnClick() {
-  console.log(cash)
+  onCashValueChange(); // Called on button press to assist automated tests
+  const changeRequired = cash - price;
+  const {change, changeRemaining} = calculateChange(changeRequired);
+  const cidTotal = cid.reduce((sum, ct) => sum + ct[1], 0);
+  if (changeRequired < 0) {
+    return alert("Customer does not have enough money to purchase the item");
+  } else if (!changeRequired) {
+    return changeDueSpan.innerText = "No change due - customer paid with exact cash"
+  } else if (changeRemaining) {
+    return changeDueSpan.textContent = "Status: INSUFFICIENT_FUNDS";
+  }
+  changeDueSpan.textContent = changeRequired === cidTotal ? "Status: CLOSED " : "Status: OPEN ";
+  const outputText = Object.keys(change).map(c => change[c].used ? `${c}: $${change[c].total}` : "")
+  changeDueSpan.textContent += outputText.join(" ");
 }
 
 function onCashValueChange(e) {
@@ -71,7 +103,7 @@ function onCashValueChange(e) {
   input = input.match(regex)
   input = input ? input[0] : ""
   cashInput.value = input
-  cash = parseFloat(input);
+  cash = parseFloat(input||0);
 }
 
 purchaseBtn.addEventListener('click', onPurchaseBtnClick)
@@ -79,3 +111,4 @@ cashInput.addEventListener('input', onCashValueChange)
 
 renderDrawer();
 renderPrice();
+onCashValueChange()
