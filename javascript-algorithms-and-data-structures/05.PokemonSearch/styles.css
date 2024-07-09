@@ -1,0 +1,184 @@
+:root {
+  --dark: #39393a;
+  --light: #f8f8f8;
+  --primary: #06aed5;
+  --secondary: #f0c808;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--dark);
+}
+
+html {
+  scroll-behavior: smooth;
+  padding: 0px;
+  margin: 0px;
+  background-color: var(--light);
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+  height: 100vh;
+  padding: 20px 0px;
+}
+
+p,
+span,
+nav,
+a,
+h1,
+h2,
+h3 {
+  margin: 0px;
+  color: inherit;
+}
+
+h1 {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 600;
+}
+
+.text-light {
+  color: var(--light);
+}
+.text-dark {
+  color: var(--dark);
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  max-width: 600px;
+  padding: 0px 10px;
+  margin: 0px auto;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 15px;
+}
+
+.by-line {
+  width: 100%;
+  font-size: 0.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header-img {
+  height: auto;
+  width: 100%;
+  max-width: 50px;
+}
+
+#title {
+  width: 100%;
+  text-align: start;
+  margin: 20px 0px;
+}
+
+.img-container {
+  border: 1px red solid;
+  height: 250px;
+  width: 250px;
+}
+
+button {
+  all: unset;
+  box-sizing: border-box;
+  background-color: var(--primary);
+  color: var(--light);
+  font-family: "Bricolage Grotesque", sans-serif;
+  padding: 0px 25px;
+  width: auto;
+  min-height: 40px;
+  min-width: 200px;
+  max-width: 315px;
+  flex: 1;
+  border-radius: 10px;
+  transition: all 200ms;
+}
+
+button:hover {
+  cursor: pointer;
+  box-shadow: var(--dark) 5px 5px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: end;
+  gap: 10px;
+}
+
+.textInputs {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.icon {
+  position: absolute;
+  bottom: 0.25rem;
+  left: 0.45rem;
+  font-size: 1.5rem;
+}
+
+label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  margin-left: -5px;
+  font-weight: light;
+}
+input {
+  all: unset;
+  background-color: white;
+  border: 1px var(--dark) solid;
+  box-sizing: border-box;
+  font-family: "Bricolage Grotesque", sans-serif;
+  padding: 0px 2.25rem;
+  border-radius: 10px;
+  height: 40px;
+  font-size: 1.2rem;
+  font-weight: 300;
+  min-width: 250px;
+}
+
+input:focus {
+  border: 1px var(--primary) solid;
+  box-shadow: var(--primary) 5px 5px;
+}
+
+table {
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 0 20px -10px var(--dark);
+  border-radius: 20px;
+  border: 0.5px var(--light);
+}
+
+th,
+td {
+  padding: 7.5px 10px;
+  background-color: white;
+  color: var(--dark);
+  text-align: center;
+}
+
+th {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+td {
+  font-size: 1rem;
+}
