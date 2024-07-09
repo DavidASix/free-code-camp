@@ -1,0 +1,105 @@
+:root {
+  --dark: #39393a;
+  --light: #f8f8f8;
+  --primary: #06AED5;
+  --secondary: #F0C808;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--dark);
+}
+
+html {
+  scroll-behavior: smooth;
+  padding: 0px;
+  margin: 0px;
+  background-color: var(--primary);
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+  height: 100vh;
+  padding: 20px 0px;
+}
+
+p,
+span,
+nav,
+a,
+h1,
+h2,
+h3 {
+  margin: 0px;
+  color: inherit;
+}
+
+h1 {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 600;
+}
+
+.text-light {
+  color: var(--light);
+}
+.text-dark {
+  color: var(--dark);
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  max-width: 600px;
+  padding: 0px 10px;
+  margin: 0px auto;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  gap: 15px;
+}
+
+button {
+  all: unset;
+  box-sizing: border-box;
+  background-color: var(--primary);
+  color: var(--light);
+  font-family: "Bricolage Grotesque", sans-serif;
+  padding: 0px 25px;
+  width: auto;
+  height: 40px;
+  min-width: 300px;
+  border-radius: 10px;
+  transition: all 200ms;
+}
+
+button:hover {
+  cursor: pointer;
+  box-shadow: var(--dark) 5px 5px;
+}
+
+input {
+  all: unset;
+  background-color: white;
+  border: 1px var(--dark) solid;
+  box-sizing: border-box;
+  font-family: "Bricolage Grotesque", sans-serif;
+  padding: 0px 25px;
+  border-radius: 10px;
+  height: 40px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: 300;
+  min-width: 300px;
+}
+
+input:focus {
+  border: 1px var(--primary) solid;
+  box-shadow: var(--primary) 5px 5px;
+}
