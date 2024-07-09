@@ -12,13 +12,35 @@
   </head>
   <body>
     <main>
-      <h1>Cash Register</h1>
-      <input type="number "id="cash" placeholder="10.10" />
+      <div class="by-line">
+        <img
+          src="https://api.davidasix.com/uploads/icon_750px_e6059c91eb.png"
+          class="header-img"
+        />
+        <h1>by DavidASix</h1>
+      </div>
+      <div id="title">
+        <h1 style="font-size: 3rem; font-weight: 800">
+          Cash Register
+        </h1>
+        <span style="font-size: 1.1rem; font-weight: 200">
+          a freeCodeCamp project
+        </span>
+      </div>
+      <div class="inputContainer">
+        <div class="textInputs">
+          <label for="cash" id="cash-label">
+            How much cash you got?
+          </label>
+          <input type="number "id="cash" placeholder="10.10" />
+          <span class="dollarSign">💸</span>
+        </div>
+        <button id="purchase-btn">
+          Purchase
+        </button>
+      </div>
       <span id="change-due"></span>
-      <button id="purchase-btn">
-        Purchase
-      </button>
-      <h2>PRICE: <span id="price"></span></h2>
+      <h2 style="font-weight: bold;">Price Total: <span id="price"></span></h2>
       <table>
         <tr>
           <th>Denomination</th>

@@ -34,12 +34,14 @@ const drawerTbody = document.getElementById("drawer");
 const priceSpan = document.getElementById("price");
 
 function renderPrice() {
-  priceSpan.innerText = `$${price}`;
+  priceSpan.innerText = `$${price.toFixed(2)}`;
 }
 
 function renderDrawer() {
   drawerTbody.innerHTML = "";
-  cid.forEach((ct, i) => {
+  Array.from(cid)
+  .reverse()
+  .forEach((ct, i) => {
     const denom = denoms.find(d => d.cid_key === ct[0])
     drawerTbody.innerHTML += `
     <tr>

@@ -65,6 +65,31 @@ main {
   gap: 15px;
 }
 
+.by-line {
+  width: 100%;
+  font-size: 0.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.header-img {
+  height: auto;
+  width: 100%;
+  max-width: 50px;
+}
+
+#title {
+  width: 100%;
+  text-align: start;
+  margin: 20px 0px;
+}
+
+#change-due {
+  text-align: center;
+  text-wrap: nowrap;
+  font-size: 0.8rem;
+}
+
 button {
   all: unset;
   box-sizing: border-box;
@@ -73,8 +98,10 @@ button {
   font-family: "Bricolage Grotesque", sans-serif;
   padding: 0px 25px;
   width: auto;
-  height: 40px;
-  min-width: 300px;
+  min-height: 40px;
+  min-width: 200px;
+  max-width: 315px;
+  flex: 1;
   border-radius: 10px;
   transition: all 200ms;
 }
@@ -84,22 +111,75 @@ button:hover {
   box-shadow: var(--dark) 5px 5px;
 }
 
+.inputContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: end;
+  gap: 10px
+}
+
+.textInputs {
+  display: flex;
+  flex-direction: column;
+  position: relative
+}
+
+.dollarSign {
+  position: absolute;
+  bottom: 0.25rem;
+  left: 0.45rem;
+  font-size: 1.5rem;
+}
+
+label {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  margin-left: -5px;
+  font-weight: light;
+}
 input {
   all: unset;
   background-color: white;
   border: 1px var(--dark) solid;
   box-sizing: border-box;
   font-family: "Bricolage Grotesque", sans-serif;
-  padding: 0px 25px;
+  padding: 0px 2.25rem;
   border-radius: 10px;
   height: 40px;
-  margin-bottom: 10px;
   font-size: 1.2rem;
   font-weight: 300;
-  min-width: 300px;
+  min-width: 250px;
 }
 
 input:focus {
   border: 1px var(--primary) solid;
   box-shadow: var(--primary) 5px 5px;
+}
+
+
+table {
+	width: 100%;
+	overflow: hidden;
+	box-shadow: 0 0 20px -10px var(--dark);
+  border-radius: 20px;
+  border: 0.5px var(--light);
+}
+
+th,
+td {
+	padding: 7.5px 10px;
+	background-color: white;
+	color: var(--dark);
+  text-align: center;
+}
+
+th {
+	font-weight: bold;
+  font-size: 1.2rem;
+}
+
+td {
+  font-size: 1rem;
 }
