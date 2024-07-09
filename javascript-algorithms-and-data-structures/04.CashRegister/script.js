@@ -40,10 +40,10 @@ function renderPrice() {
 function renderDrawer() {
   drawerTbody.innerHTML = "";
   Array.from(cid)
-  .reverse()
-  .forEach((ct, i) => {
-    const denom = denoms.find(d => d.cid_key === ct[0])
-    drawerTbody.innerHTML += `
+    .reverse()
+    .forEach((ct, i) => {
+      const denom = denoms.find((d) => d.cid_key === ct[0]);
+      drawerTbody.innerHTML += `
     <tr>
       <td>
         ${ct[0].slice(0, 1).toUpperCase() + ct[0].slice(1).toLowerCase()}
@@ -59,58 +59,70 @@ function renderDrawer() {
       </td>
     </tr>
     `;
-  });
+    });
 }
 
 function calculateChange(changeRequired) {
   // Returns an object of denominations and values to give change
   let changeRemaining = changeRequired;
-  let change = {}
+  let change = {};
   let denomsUsed = 0;
   Array.from(denoms)
-  .reverse()
-  .forEach(denom => {
-    // Get the minimum of either the required amount of denoms, or the amount we have
-    let denomsAvailable = Math.round(cid.find(c => c[0] === denom.cid_key)[1] / denom.value);
-    denomsUsed = Math.floor(changeRemaining / denom.value);
-    denomsUsed =  Math.min(denomsUsed, denomsAvailable)
+    .reverse()
+    .forEach((denom) => {
+      // Get the minimum of either the required amount of denoms, or the amount we have
+      let denomsAvailable = Math.round(
+        cid.find((c) => c[0] === denom.cid_key)[1] / denom.value
+      );
+      denomsUsed = Math.floor(changeRemaining / denom.value);
+      denomsUsed = Math.min(denomsUsed, denomsAvailable);
 
-    changeRemaining = Number((changeRemaining - (denomsUsed * denom.value)).toFixed(2));
-    change[denom.cid_key] = {used: denomsUsed, value: denom.value, total: denom.value * denomsUsed};
-  });
-  return {change, changeRemaining};
+      changeRemaining = Number(
+        (changeRemaining - denomsUsed * denom.value).toFixed(2)
+      );
+      change[denom.cid_key] = {
+        used: denomsUsed,
+        value: denom.value,
+        total: denom.value * denomsUsed,
+      };
+    });
+  return { change, changeRemaining };
 }
 
 function onPurchaseBtnClick() {
   onCashValueChange(); // Called on button press to assist automated tests
   const changeRequired = cash - price;
-  const {change, changeRemaining} = calculateChange(changeRequired);
+  const { change, changeRemaining } = calculateChange(changeRequired);
   const cidTotal = cid.reduce((sum, ct) => sum + ct[1], 0);
   if (changeRequired < 0) {
     return alert("Customer does not have enough money to purchase the item");
   } else if (!changeRequired) {
-    return changeDueSpan.innerText = "No change due - customer paid with exact cash"
+    return (changeDueSpan.innerText =
+      "No change due - customer paid with exact cash");
   } else if (changeRemaining) {
-    return changeDueSpan.textContent = "Status: INSUFFICIENT_FUNDS";
+    return (changeDueSpan.textContent = "Status: INSUFFICIENT_FUNDS");
   }
-  changeDueSpan.textContent = changeRequired === cidTotal ? "Status: CLOSED " : "Status: OPEN ";
-  const outputText = Object.keys(change).map(c => change[c].used ? `${c}: $${change[c].total}` : "")
+  changeDueSpan.textContent =
+    changeRequired === cidTotal ? "Status: CLOSED " : "Status: OPEN ";
+  const outputText = Object.keys(change).map((c) =>
+    change[c].used ? `${c}: $${change[c].total}` : ""
+  );
   changeDueSpan.textContent += outputText.join(" ");
 }
 
 function onCashValueChange(e) {
   let input = cashInput.value;
   // Clean String
-  const regex = /\d+\.?\d?\d?/
-  input = input.match(regex)
-  input = input ? input[0] : ""
-  cashInput.value = input
-  cash = parseFloat(input||0);
+  const regex = /\d+\.?\d?\d?/;
+  input = input.match(regex);
+  input = input ? input[0] : "";
+  cashInput.value = input;
+  cash = parseFloat(input || 0);
 }
 
-purchaseBtn.addEventListener('click', onPurchaseBtnClick)
-cashInput.addEventListener('input', onCashValueChange)
+purchaseBtn.addEventListener("click", onPurchaseBtnClick);
+cashInput.addEventListener("input", onCashValueChange);
 
 renderDrawer();
 renderPrice();
-onCashValueChange()
+onCashValueChange();

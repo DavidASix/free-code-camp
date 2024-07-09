@@ -1,8 +1,8 @@
 :root {
   --dark: #39393a;
   --light: #f8f8f8;
-  --primary: #06AED5;
-  --secondary: #F0C808;
+  --primary: #06aed5;
+  --secondary: #f0c808;
 }
 
 * {
@@ -117,13 +117,13 @@ button:hover {
   flex-wrap: wrap;
   justify-content: center;
   align-items: end;
-  gap: 10px
+  gap: 10px;
 }
 
 .textInputs {
   display: flex;
   flex-direction: column;
-  position: relative
+  position: relative;
 }
 
 .dollarSign {
@@ -158,25 +158,24 @@ input:focus {
   box-shadow: var(--primary) 5px 5px;
 }
 
-
 table {
-	width: 100%;
-	overflow: hidden;
-	box-shadow: 0 0 20px -10px var(--dark);
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 0 20px -10px var(--dark);
   border-radius: 20px;
   border: 0.5px var(--light);
 }
 
 th,
 td {
-	padding: 7.5px 10px;
-	background-color: white;
-	color: var(--dark);
+  padding: 7.5px 10px;
+  background-color: white;
+  color: var(--dark);
   text-align: center;
 }
 
 th {
-	font-weight: bold;
+  font-weight: bold;
   font-size: 1.2rem;
 }
 
