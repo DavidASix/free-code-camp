@@ -20,9 +20,7 @@
         <h1>by DavidASix</h1>
       </div>
       <div id="title">
-        <h1 style="font-size: 3rem; font-weight: 800">
-          Pokémon Pokédex
-        </h1>
+        <h1 style="font-size: 3rem; font-weight: 800">Pokémon Pokédex</h1>
         <span style="font-size: 1.1rem; font-weight: 200">
           a freeCodeCamp project
         </span>
@@ -32,62 +30,54 @@
           <label for="search-input" id="search-input-label">
             Enter a Pokémon
           </label>
-          <input type="text " id="search-input" placeholder="Pikachu" />
-          <span class="icon">⚡️</span>
+          <input type="text" id="search-input" placeholder="Pikachu" required />
+          <span id="bolt" class="icon" style="display: block">⚡️</span>
+          <span id="loading" class="icon" style="display: none">🌀</span>
         </div>
         <button id="search-button">Search</button>
       </div>
-      <div class="img-container">
-        
+      <div id="img-container" class="img-container"></div>
+      <div class="name-container">
+        <h2 id="pokemon-name"></h2>
+        <span id="pokemon-id"></span>
       </div>
+      <ol id="types"></ol>
       <table>
         <thead>
-          <th>Base</th>
           <th>Stat</th>
+          <th>Base Value</th>
         </thead>
         <tbody>
           <tr>
-            <td>pokemon-name</td>
-            <td id="pokemon-name"></td>
-          </tr>
-          <tr>
-            <td>pokemon-id</td>
-            <td id="pokemon-id"></td>
-          </tr>
-          <tr>
-            <td>weight</td>
+            <td>Weight</td>
             <td id="weight"></td>
           </tr>
           <tr>
-            <td>height</td>
+            <td>Height</td>
             <td id="height"></td>
           </tr>
           <tr>
-            <td>types</td>
-            <td id="types"></td>
-          </tr>
-          <tr>
-            <td>hp</td>
+            <td>Health</td>
             <td id="hp"></td>
           </tr>
           <tr>
-            <td>attack</td>
+            <td>Attack</td>
             <td id="attack"></td>
           </tr>
           <tr>
-            <td>defense</td>
+            <td>Defense</td>
             <td id="defense"></td>
           </tr>
           <tr>
-            <td>special-attack</td>
+            <td>Special Attack</td>
             <td id="special-attack"></td>
           </tr>
           <tr>
-            <td>special-defense</td>
+            <td>Special Defense</td>
             <td id="special-defense"></td>
           </tr>
           <tr>
-            <td>speed</td>
+            <td>Speed</td>
             <td id="speed"></td>
           </tr>
         </tbody>

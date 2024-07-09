@@ -85,9 +85,49 @@ main {
 }
 
 .img-container {
-  border: 1px red solid;
   height: 250px;
   width: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokeimage {
+  object-fit: contain;
+  height: 100%;
+  width: auto;
+}
+
+.name-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+#pokemon-name {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+#pokemon-id:not(:empty)::before {
+  content: "ID #";
+}
+
+#types {
+  all: unset;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+#types > li {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 0 5px -3px var(--dark);
+  padding: 5px 30px 5px 30px;
+  font-size: 0.8rem;
+  cursor: default;
 }
 
 button {
@@ -131,6 +171,19 @@ button:hover {
   bottom: 0.25rem;
   left: 0.45rem;
   font-size: 1.5rem;
+}
+
+#loading {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 label {
